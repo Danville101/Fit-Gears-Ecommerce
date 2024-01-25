@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+<body style="display:flex; padding-left:4rem; padding-right:4rem;  flex-direction:column;">
+     <div  >
+<p>Order summary:</p>
+<h1>Order number #{{order_number}}</h1>
+<div style="display:flex; justify-content:space-between; align-items: center; border-bottom:solid 0.1rem #E0E4E6; width: 40rem;">
+    <div><p >${{subtotal}}</p></div> 
+     <div></div>
+     <p>Subtotal</p></div>
+<div style="display:flex; justify-content: space-between; border-bottom:solid 0.1rem #E0E4E6;"><p>${{shipping}}</p> <p>Shipping Cost(1.2%)</p></div>
+<div style="display:flex; justify-content: space-between; border-bottom:solid 0.1rem #E0E4E6;"><p style="font-weight: bold;" >${{total}}</p> <p>Total</p></div>
+
+
+<div style="display:flex; justify-content: space-between;">
+<div styel="display:flex; flex-direction:column; ">
+<p>Billing address</p>
+<h4>
+ {{name}}</h4>
+ <h4>{{place}}</h4>
+<h4>{{postcode}}</h4>
+<h4>{{coountry}} </h4> 
+<h4>{{phone}} </h4> 
+</div>
+
+<div>
+
+
+<p>Payment method</p>
+<h4>
+
+VISA
+4012************1881
+  
+</h4>
+
+
+</div>
+</div>
+
+
+
+
+<button style=" background-color:aquamarine ; border: none; border-radius: 0.2rem; padding-left: 1rem; padding-right: 1rem; padding-top:1rem; padding-bottom: 1rem; color: white;  font-size: 1.5rem; width: 18rem;">Download Receipt</button>
+</div>
+</body>
+</html>
+
