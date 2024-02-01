@@ -102,7 +102,7 @@ export default function Home({categories, cartData}) {
           
         <Link href={`/lisitings/?category=${e.category}`}>
           <div></div>
-          <Image src={"http://127.0.0.1:8000/"+e.image} width={200} height={200} alt='' className='w-full duration-500 group-hover:scale-105'/>
+          <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+e.image} width={200} height={200} alt='' className='w-full duration-500 group-hover:scale-105'/>
           <div className='flex items-baseline justify-center w-full -translate-y-20'> <div className='w-20 py-2 text-center duration-500 bg-white bg-opacity-50 text-auto text group-hover:bg-brand group-hover:bg-opacity-70 group hover:cursor-pointer'>
           <p className='duration-700 group-hover:text-white'>{String(e.category).substring(0,9)}...</p>
           </div></div>
@@ -196,7 +196,7 @@ export async function getServerSideProps (context){
   const headers = context.req.headers;
   const userAgent = headers['user-agent'];
 
-  const res = await fetch("http://127.0.0.1:8000/costumer/categories/",{
+  const res = await fetch(`http://${process.env.HOST}:8000/costumer/categories/`,{
     headers: {
          'Accept': 'application/json',
          'Content-Type': 'application/json'
@@ -209,7 +209,7 @@ export async function getServerSideProps (context){
 
 
   
-  const res2 = await fetch("http://127.0.0.1:8000/costumer/cart/",{
+  const res2 = await fetch(`http://${process.env.HOST}:8000/costumer/cart/`,{
     headers: {
          'Accept': 'application/json',
          'Content-Type': 'application/json',

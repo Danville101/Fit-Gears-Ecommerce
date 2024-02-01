@@ -1,9 +1,20 @@
 version: "3.9"
 services:
- server:
+  server:
    build:
      context: ./server
      dockerfile: Dockerfile
    ports:
-     - "8080:8080"
-   command: uvicorn app.main:app --reload
+     - "8000:8000"
+  client:
+     build:
+      context: ./client
+      dockerfile: Dockerfile
+     ports:
+      - "3000:3000"
+     environment:
+     - HOST=server
+     - NEXT_PUBLIC_IMAGE_URL=server
+     depends_on:
+     - server
+     command: npm run dev
