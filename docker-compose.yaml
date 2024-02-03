@@ -1,11 +1,22 @@
 version: "3.9"
 services:
+  postgres:
+    build:
+     context: ./db
+     dockerfile: Dockerfile
+    ports:
+    - "6001:5432"
   server:
    build:
      context: ./server
      dockerfile: Dockerfile
+  
+   depends_on:
+    - postgres
    ports:
-     - "8000:8000"
+     - "8000:8000" 
+   environment:
+    - DATABASE_URL=postgresql://postgres:villabean101@postgres/Ecom5
   client:
      build:
       context: ./client

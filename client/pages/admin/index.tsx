@@ -20,7 +20,7 @@ const Index = () => {
      const loginFunc =(e:any)=>{
           e.preventDefault()
 
-          fetch('http://127.0.0.1:8000/login/', {
+          fetch(`http://${process.env.HOST}:8000/login/`, {
                method: 'POST',
                mode: 'cors',
                headers: {
@@ -55,7 +55,7 @@ const Index = () => {
     //const Regusterfunc =(e:any)=>{
     //     e.preventDefault()
 
-    //     fetch('http://127.0.0.1:8000/api/user/', {
+    //     fetch(`http://${process.env.HOST}:8000/api/user/`, {
     //          method: 'POST',
     //          mode: 'cors',
     //          body: JSON.stringify({

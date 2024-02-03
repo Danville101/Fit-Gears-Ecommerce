@@ -50,7 +50,7 @@ const Products = ({product, page, search}) => {
     form.append('quantity', formData.quantity);
     form.append('price', formData.price);
     try {
-      await axios.post('http://127.0.0.1:8000/product/', formData, {
+      await axios.post(`http://${process.env.HOST}:8000/product/`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       alert('Product added successfully');
@@ -72,7 +72,7 @@ const Products = ({product, page, search}) => {
    }
 
      const setPublished=async(id)=>{
-         await fetch(`http://127.0.0.1:8000/admin/product_published/${id}`,
+         await fetch(`http://${process.env.HOST}:8000/admin/product_published/${id}`,
           {
                method: 'PUT',
                mode: 'cors',
@@ -114,7 +114,7 @@ const Products = ({product, page, search}) => {
                   <div className=''><p>Product List</p>
                   
                    <div className='flex justify-between mt-2 md:flex-col md:space-y-4 md:right-0 '>
-                     <input  type="search" placeholder='Search' className='py-2 pl-2 border outline-none w-52' onChange={(e)=>router.replace(`http://127.0.0.1:3000/admin/products/?search=${e.target.value}`)}/>
+                     <input  type="search" placeholder='Search' className='py-2 pl-2 border outline-none w-52' onChange={(e)=>router.replace(`http://${process.env.HOST}:3000/admin/products/?search=${e.target.value}`)}/>
                     <button className='text-white rounded-md bg-[#28A487] px-4 py-2 w-32' onClick={()=>setProductForm(!productForm)}> Add Product</button>
                    </div></div>
                    
@@ -137,7 +137,7 @@ const Products = ({product, page, search}) => {
     (<tr className={` ${i%2==0?"":"bg-[#F8F8F8] rounded-lg"} h-28`} key={i}>
      
        <td className={`px-4 py-2  `}>
-         <Image src={`http://127.0.0.1:8000/${e.image1}`} width={200} height={200} alt='img'/>
+         <Image src={`http://${process.env.HOST}:8000/${e.image1}`} width={200} height={200} alt='img'/>
        </td>
        <td className="px-4 py-2 ">{e.name}</td>
        <td className="px-4 py-2 ">{e.category_name}</td>
@@ -253,7 +253,7 @@ export async function getServerSideProps({ query }) {
 
 
      if (search && page){
-      const res = await fetch(`http://127.0.0.1:8000/admin/products/?search=${search}&page=${page}`,{
+      const res = await fetch(`http://${process.env.HOST}:8000/admin/products/?search=${search}&page=${page}`,{
         headers: {
              'Accept': 'application/json',
              'Content-Type': 'application/json'
@@ -274,7 +274,7 @@ export async function getServerSideProps({ query }) {
      
 
      if (search){
-      const res = await fetch(`http://127.0.0.1:8000/admin/products/?search=${search}`,{
+      const res = await fetch(`http://${process.env.HOST}:8000/admin/products/?search=${search}`,{
         headers: {
              'Accept': 'application/json',
              'Content-Type': 'application/json'
@@ -292,7 +292,7 @@ export async function getServerSideProps({ query }) {
 
      }
    
-     const res = await fetch(`http://127.0.0.1:8000/admin/products/?page=${page}`,{
+     const res = await fetch(`http://${process.env.HOST}:8000/admin/products/?page=${page}`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

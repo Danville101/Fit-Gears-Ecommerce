@@ -20,7 +20,7 @@ const Cart = ({cartData}) => {
      const loginFunc =(e:any)=>{
           e.preventDefault()
 
-          fetch('http://127.0.0.1:8000/login/', {
+          fetch(`http://${process.env.HOST}:8000/login/`, {
                method: 'POST',
                mode: 'cors',
                headers: {
@@ -125,7 +125,7 @@ export async function getServerSideProps (context){
    
    
      
-     const res2 = await fetch("http://127.0.0.1:8000/costumer/cart/",{
+     const res2 = await fetch(`http://${process.env.HOST}:8000/costumer/cart/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

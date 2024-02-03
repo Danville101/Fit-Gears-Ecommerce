@@ -15,16 +15,16 @@ const Detail = ({product, cartData}) => {
      const getPic=():String=>{
 
           if(imageState==1){
-                         return "http://127.0.0.1:8000/"+product.product.image1
+                         return `http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+product.product.image1
           }
           if(imageState==2){
-                         return "http://127.0.0.1:8000/"+product.product.image2
+                         return `http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+product.product.image2
           }
           if(imageState==3){
-                         return "http://127.0.0.1:8000/"+product.product.image3
+                         return `http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+product.product.image3
           }
           if(imageState==4){
-                         return "http://127.0.0.1:8000/"+product.product.image2
+                         return `http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+product.product.image2
           }
        
 
@@ -34,7 +34,7 @@ const Detail = ({product, cartData}) => {
 
 
      const addProduct= (price,product_name )=>{
-          fetch('http://127.0.0.1:8000/costumer/cart/', {
+          fetch(`http://${process.env.HOST}:8000/costumer/cart/`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -66,22 +66,22 @@ const Detail = ({product, cartData}) => {
 
                <div className='flex-col hidden mr-8 space-y-2 h-80 md:block'>
                     <div className='relative w-20 h-24'>
-                                          <Image src={"http://127.0.0.1:8000/"+product.product.image1} layout='fill' alt='' className={` ${imageState==1?"border-2  border-black rounded-md":""} h-30 w-20`} onClick={()=>setImageState(1)}/>
+                                          <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+product.product.image1} layout='fill' alt='' className={` ${imageState==1?"border-2  border-black rounded-md":""} h-30 w-20`} onClick={()=>setImageState(1)}/>
    
                     </div>
 
            <div className='relative w-20 h-24'>
-                                   <Image src={"http://127.0.0.1:8000/"+product.product.image2} layout='fill' alt='' className={` ${imageState==2?"border-2  border-black rounded-md":""} h-30 w-20`} onClick={()=>setImageState(2)}/>
+                                   <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+product.product.image2} layout='fill' alt='' className={` ${imageState==2?"border-2  border-black rounded-md":""} h-30 w-20`} onClick={()=>setImageState(2)}/>
 
            </div>
 
            <div className='relative w-20 h-24'>
-                                   <Image src={"http://127.0.0.1:8000/"+product.product.image3}  layout='fill' alt='' className={` ${imageState==3?"border-2  border-black rounded-md":""} h-30 w-20`} onClick={()=>setImageState(3)}/>
+                                   <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+product.product.image3}  layout='fill' alt='' className={` ${imageState==3?"border-2  border-black rounded-md":""} h-30 w-20`} onClick={()=>setImageState(3)}/>
 
            </div>
            
            <div className='relative w-20 h-24'>
-                                   <Image src={"http://127.0.0.1:8000/"+product.product.image2} layout='fill' alt='' className={` ${imageState==4?"border-2  border-black rounded-md":""} h-30 w-20`} onClick={()=>setImageState(4)}/>
+                                   <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+product.product.image2} layout='fill' alt='' className={` ${imageState==4?"border-2  border-black rounded-md":""} h-30 w-20`} onClick={()=>setImageState(4)}/>
 
            </div>
                     
@@ -155,8 +155,8 @@ const Detail = ({product, cartData}) => {
                                             </div>
                                             <div className='relative w-full h-80'>
 
-                                             <Image src={"http://127.0.0.1:8000/"+e.image1} layout='fill' alt='' className='w-full h-full duration-500 bg-black group-hover:hidden'/>
-                                             <Image src={"http://127.0.0.1:8000/"+e.image2} layout='fill' alt='' className='hidden w-full h-full duration-500 bg-black group-hover:block '/>
+                                             <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+e.image1} layout='fill' alt='' className='w-full h-full duration-500 bg-black group-hover:hidden'/>
+                                             <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+e.image2} layout='fill' alt='' className='hidden w-full h-full duration-500 bg-black group-hover:block '/>
 
                                             </div>
                                             
@@ -192,7 +192,7 @@ export async function getServerSideProps (context){
 
      const id =  Number(context.query.id)
 
-     const res = await fetch(`http://127.0.0.1:8000/costumer/product/${id}`,{
+     const res = await fetch(`http://${process.env.HOST}:8000/costumer/product/${id}`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -205,7 +205,7 @@ export async function getServerSideProps (context){
 
 
 
-     const res2 = await fetch("http://127.0.0.1:8000/costumer/cart/",{
+     const res2 = await fetch(`http://${process.env.HOST}:8000/costumer/cart/`,{
           headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json',

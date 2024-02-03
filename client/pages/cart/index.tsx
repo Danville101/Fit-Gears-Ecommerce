@@ -102,7 +102,7 @@ const Cart = ({cartData}) => {
                          <div key={i} className='flex justify-between w-full pb-4 mt-4 border-b group'>
 
                               <Link href={`/lisitings/${e.product_id}`} >
-                              <Image src={"http://127.0.0.1:8000/"+e.image} height={100} width={100} alt="" className='h-24'/>
+                              <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+e.image} height={100} width={100} alt="" className='h-24'/>
                               </Link>
                               <div className='flex justify-between h-24 ml-4'>
                                    <p  className='w-20 text-xs group-hover:text-brand'>{e.item.product_name.length>30?String(e.item.product_name).substring(0,21)+"...":e.item.product_name}</p>
@@ -166,7 +166,7 @@ export async function getServerSideProps (context){
    
    
      
-     const res2 = await fetch("http://127.0.0.1:8000/costumer/cart/",{
+     const res2 = await fetch(`http://${process.env.HOST}:8000/costumer/cart/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
