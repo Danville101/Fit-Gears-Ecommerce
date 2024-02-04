@@ -28,6 +28,7 @@ from starlette.responses import RedirectResponse
 
 from app.routers.admin import admin_app
 from app.routers.costumer import costumer_app
+import os
 
 app = FastAPI(debug=True)
 app.mount("/admin", admin_app)
@@ -35,7 +36,9 @@ app.mount("/costumer", costumer_app)
 
 env= Environment(loader=PackageLoader('app', 'templates') )
 
-stripe.api_key="sk_test_51Lij1LKl07rHxPLvCex6bW4vc1YdGCGyAuSzL6qWlJMLmuNMx0DgiP1w9W4uxMy89WXlsdgARHTzBHoTOJHnx9jw00PwqDna31"
+stripe.api_key= os.environ.get("STRIPE_API_KEY")
+
+
 
 
 
@@ -142,6 +145,8 @@ async def login(req: LoginResquest, db:Session=Depends(get_db)):
 async def category(db:Session=Depends(get_db)):
      
      category=  db.query(Category).all()
+     if not category:
+        raise HTTPException(status_code=404, detail="Item not found")
      
      return category
 
