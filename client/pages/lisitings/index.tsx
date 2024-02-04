@@ -81,7 +81,7 @@ const Listing = ({products, page_size, cartData}) => {
 
   
      const addProduct= async()=>{
-          await fetch('http://127.0.0.1:8000/costumer/cart/',{
+          await fetch(`http://${process.env.HOST}:8000/costumer/cart/`,{
                method:"POST",
                headers: {
                     'Accept': 'application/json',
@@ -332,8 +332,8 @@ const Listing = ({products, page_size, cartData}) => {
                                             </div>
                                             <div className='w-full h-80 '>
 
-                                             <Image src={"http://127.0.0.1:8000/"+e.image1} height={200} width={200} alt='' className='w-full h-full duration-500 bg-black group-hover:hidden '/>
-                                             <Image src={"http://127.0.0.1:8000/"+e.image2} height={200} width={200} alt='' className='hidden w-full h-full duration-500 bg-black group-hover:block '/>
+                                             <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+e.image1} height={200} width={200} alt='' className='w-full h-full duration-500 bg-black group-hover:hidden '/>
+                                             <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+e.image2} height={200} width={200} alt='' className='hidden w-full h-full duration-500 bg-black group-hover:block '/>
 
                                             </div>
                                           
@@ -389,7 +389,7 @@ export async function getServerSideProps (context){
      const highprice =  context.query.highprice 
      const search = context.query.search
 
-     const res = await fetch(`http://127.0.0.1:8000/costumer/products/?page_size=${page_size}`,{
+     const res = await fetch(`http://${process.env.HOST}:8000/costumer/products/?page_size=${page_size}`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -403,7 +403,7 @@ export async function getServerSideProps (context){
     
    
 
-  const res2 = await fetch("http://127.0.0.1:8000/costumer/cart/",{
+  const res2 = await fetch(`http://${process.env.HOST}:8000/costumer/cart/`,{
      headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -420,7 +420,7 @@ export async function getServerSideProps (context){
  
    
    if (category){
-     const res = await fetch(`http://127.0.0.1:8000/costumer/products/?page_size=${page_size}&category=${category}`,{
+     const res = await fetch(`http://${process.env.HOST}:8000/costumer/products/?page_size=${page_size}&category=${category}`,{
   headers: {
        'Accept': 'application/json',
        'Content-Type': 'application/json'
@@ -437,7 +437,7 @@ return{props:{ products, page_size, cartData}}
 }
 
    if (lowprice && highprice){
-     const res = await fetch(`http://127.0.0.1:8000/costumer/products/?page_size=${page_size}&lowprice=${lowprice}&highprice=${highprice}`,{
+     const res = await fetch(`http://${process.env.HOST}:8000/costumer/products/?page_size=${page_size}&lowprice=${lowprice}&highprice=${highprice}`,{
   headers: {
        'Accept': 'application/json',
        'Content-Type': 'application/json'
@@ -454,7 +454,7 @@ return{props:{ products, page_size, cartData}}
 }
    
 if (search){
-     const res = await fetch(`http://127.0.0.1:8000/costumer/products/?page_size=${page_size}&search=${search}`,{
+     const res = await fetch(`http://${process.env.HOST}:8000/costumer/products/?page_size=${page_size}&search=${search}`,{
   headers: {
        'Accept': 'application/json',
        'Content-Type': 'application/json'

@@ -42,7 +42,7 @@ const Product = ({categories, products}:any) => {
     form.append('quantity', formData.quantity);
     form.append('price', formData.price);
     try {
-      await axios.post('http://127.0.0.1:8000/product/', formData, {
+      await axios.post(`http://${process.env.HOST}:8000/product/`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       alert('Product added successfully');
@@ -115,7 +115,7 @@ const Product = ({categories, products}:any) => {
     
     </div>
     <div className='w-full'>
-    <Image className="self-center object-cover w-full h-64 shadow-md rounded-t-md " src={ "http://127.0.0.1:8000/"+ e.image1} width={200}  height={200} alt={e.name}/>
+    <Image className="self-center object-cover w-full h-64 shadow-md rounded-t-md " src={ `http://${process.env.HOST}:8000/`+ e.image1} width={200}  height={200} alt={e.name}/>
 </div>
     <div className='flex items-center justify-center w-full '>
    

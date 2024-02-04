@@ -125,7 +125,7 @@ export async function getServerSideProps({params}) {
    
      const { id } = params;
    
-     const res = await fetch(`http://127.0.0.1:8000/admin/order/${id}`,{
+     const res = await fetch(`http://${process.env.HOST}:8000/admin/order/${id}`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

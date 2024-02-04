@@ -22,7 +22,7 @@ const TopNav = ({cartData}) => {
      const router=useRouter()
 
      const ChangeAmount= (id)=>{
-          fetch(`http://127.0.0.1:8000/costumer/cart/${id}`, {
+          fetch(`http://${process.env.HOST}:8000/costumer/cart/${id}`, {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const TopNav = ({cartData}) => {
      }
 
      const incrementAmount= (id, increment_decrement)=>{
-          fetch(`http://127.0.0.1:8000/costumer/cart/${id}`, {
+          fetch(`http://${process.env.HOST}:8000/costumer/cart/${id}`, {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const TopNav = ({cartData}) => {
      }
 
      const deleteItem= (id, )=>{
-          fetch(`http://127.0.0.1:8000/costumer/cart/${id}`, {
+          fetch(`http://${process.env.HOST}:8000/costumer/cart/${id}`, {
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/json',
@@ -209,7 +209,7 @@ const TopNav = ({cartData}) => {
                          <div key={i} className='flex pb-4 mt-4 border-b group'>
 
                               <Link href={`/lisitings/${e.product_id}`} >
-                              <Image src={"http://127.0.0.1:8000/"+e.image} height={100} width={100} alt="" className='h-24'/>
+                              <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+e.image} height={100} width={100} alt="" className='h-24'/>
                               </Link>
                               <div className='flex flex-col justify-between h-24 ml-4'>
                                    <p  className='w-20 text-xs group-hover:text-brand'>{e.item.product_name.length>30?String(e.item.product_name).substring(0,21)+"...":e.item.product_name}</p>
