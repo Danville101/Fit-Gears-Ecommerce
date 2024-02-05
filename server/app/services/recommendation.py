@@ -4,8 +4,6 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import adjusted_rand_score
 import pickle
 from pathlib import Path
-import pandas
-
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent
 
