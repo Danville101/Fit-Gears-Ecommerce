@@ -126,7 +126,7 @@ export default function Home({categories, cartData}) {
       <div className="flex-col text-center w-80">
 
            <p className='text-4xl font-bold'>Special Offer</p>
-           <p className='text-lg font-thin text-gray-500'>Don't Miss Today's Featured Deals</p>
+           <p className='text-lg font-thin text-gray-500'>Don`&apos;`t Miss Today`&apos;`s Featured Deals</p>
       </div>
    
     </div>

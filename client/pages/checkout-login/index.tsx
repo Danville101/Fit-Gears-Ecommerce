@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../layout/Layout'
 import Link from 'next/link'
+//@ts-ignore
 import { UilShop, UilAngleLeftB, UilTrashAlt , UilAngleRightB} from '@iconscout/react-unicons'
 import Image from 'next/image'
 import { PageContext } from '../context/PageContext'
@@ -8,13 +9,13 @@ import { PageContext } from '../context/PageContext'
 import { useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 
-const Cart = ({cartData}) => {
+const Cart = ({cartData}:any) => {
 
 
      const router=useRouter()
 
-     const [email,setEmail]=useState()
-     const [password,setPassword]=useState()
+     const [email,setEmail]=useState<string>()
+     const [password,setPassword]=useState<string>()
 
 
      const loginFunc =(e:any)=>{
@@ -117,7 +118,7 @@ export default Cart
 
 
 
-export async function getServerSideProps (context){
+export async function getServerSideProps (context:any){
      const headers = context.req.headers;
      const userAgent = headers['user-agent'];
    

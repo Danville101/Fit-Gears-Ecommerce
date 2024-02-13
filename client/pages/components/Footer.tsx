@@ -1,4 +1,5 @@
 import React from 'react'
+//@ts-ignore
 import { UilPlus, UilEnvelope, UilFacebookF, UilTwitter, UilInstagramAlt , UilYoutube} from '@iconscout/react-unicons'
 
 const Footer = () => {

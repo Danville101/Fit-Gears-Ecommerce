@@ -5,8 +5,8 @@ import TopNav from '../components/TopNav'
 import { useContext } from 'react'
 import { PageContext } from '../context/PageContext'
 
-function Layout ({children})  {
-     const { navbar, setNavbar } = useContext(PageContext)
+function Layout ({children}:any)  {
+     const { navbar, setNavbar }:any = useContext(PageContext)
   return (
       <PageProvider>
     <div className='flex w-screen h-screen'>

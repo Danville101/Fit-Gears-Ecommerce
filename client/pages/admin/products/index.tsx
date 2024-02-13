@@ -6,17 +6,18 @@ import { useRouter } from 'next/router'
 import { PageContext } from '../context/PageContext'
 import Link from 'next/link'
 import { FaEye, FaPen, FaTrash } from 'react-icons/fa'
+//@ts-ignore
 import { UilEye, UilPen ,UilTrashAlt} from '@iconscout/react-unicons'
+import { FormDataType } from '../interface'
 
 
+const Products = ({product, page, search}:any) => {
 
-const Products = ({product, page, search}) => {
-
-
-  const { navbar, setNavbar } = useContext(PageContext)
+ 
+  const { navbar, setNavbar }:any = useContext(PageContext)
 
   const [productForm, setProductForm]= useState(false)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     name: '',
     category: '',
     description: '',
@@ -50,6 +51,7 @@ const Products = ({product, page, search}) => {
     form.append('quantity', formData.quantity);
     form.append('price', formData.price);
     try {
+      //@ts-ignore
       await axios.post(`http://${process.env.HOST}:8000/product/`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -71,7 +73,7 @@ const Products = ({product, page, search}) => {
     router.replace("/admin/products")
    }
 
-     const setPublished=async(id)=>{
+     const setPublished=async(id:number)=>{
          await fetch(`http://${process.env.HOST}:8000/admin/product_published/${id}`,
           {
                method: 'PUT',
@@ -132,7 +134,7 @@ const Products = ({product, page, search}) => {
     </tr>
   </thead>
   <tbody>    
-    {product.products.map((e,i)=>
+    {product.products.map((e:any,i:number)=>
  
     (<tr className={` ${i%2==0?"":"bg-[#F8F8F8] rounded-lg"} h-28`} key={i}>
      
@@ -182,7 +184,7 @@ const Products = ({product, page, search}) => {
                     <button disabled={page===1}>Prev</button>
                 </Link>
                 <select>
-                  {product.pages.map((i,e)=>(
+                  {product.pages.map((i:any,e:any)=>(
                     <option key={i}>
          
                      

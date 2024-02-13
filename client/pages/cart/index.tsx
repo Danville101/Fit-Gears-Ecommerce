@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../layout/Layout'
 import Link from 'next/link'
+//@ts-ignore
 import { UilShop, UilAngleLeftB, UilTrashAlt , UilAngleRightB} from '@iconscout/react-unicons'
 import Image from 'next/image'
 import { PageContext } from '../context/PageContext'
@@ -8,12 +9,12 @@ import { PageContext } from '../context/PageContext'
 import { useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 
-const Cart = ({cartData}) => {
+const Cart = ({cartData}:any) => {
 
 
-     const { navbar, setNavbar, cartNumber, } = useContext(PageContext)
+     const { navbar, setNavbar, cartNumber }:any = useContext(PageContext)
      const[cartDrop, setCartDrop]=useState(false)
-     const [amount ,setAmount]=useState()
+     const [amount ,setAmount]=useState<string>()
 
      const [cartInfo , setCartInfo]= useState()
 
@@ -36,7 +37,7 @@ const Cart = ({cartData}) => {
    router.replace(router.asPath)
   
      }
-
+//@ts-ignore
      const incrementAmount= (id, increment_decrement)=>{
           fetch(`http://127.0.0.1:8000/costumer/cart/${id}`, {
   method: 'PUT',
@@ -55,7 +56,7 @@ const Cart = ({cartData}) => {
   
      }
 
-     const deleteItem= (id, )=>{
+     const deleteItem= (id:number )=>{
           fetch(`http://127.0.0.1:8000/costumer/cart/${id}`, {
   method: 'DELETE',
   headers: {

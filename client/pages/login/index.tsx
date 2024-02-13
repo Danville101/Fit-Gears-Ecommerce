@@ -172,7 +172,7 @@ const Cart = ({cartData}) => {
                             <div className={`flex items-center space-x-2 text-red-600 ${notUser?"":"hidden"}`}>
                               <UilExclamationOctagon className=""/>
                               <p className='text-sm'>
-                              Sorry, your email or password doesn't match our records. Please check that you have entered them correctly, or
+                              Sorry, your email or password doesn`&apos;`t match our records. Please check that you have entered them correctly, or
 
 Reset password
 <p className='text-black underline hover:cursor-pointer' onClick={()=>setForgotPassword(true)}>Foget Password</p>
@@ -258,7 +258,7 @@ Reset password
               
             </div>
 
-            <p className='mt-2 text-xs w-80'>Don't worry - it's easily done! Just enter your email address below and we'll send you a link to reset your password.</p>
+            <p className='mt-2 text-xs w-80'>Don`&apos;`t worry - it`&apos;`s easily done! Just enter your email address below and we`&apos;`ll send you a link to reset your password.</p>
             
             <form onSubmit={restPassword}>
               <div className='flex flex-col mt-2'>

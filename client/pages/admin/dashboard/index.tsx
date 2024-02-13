@@ -1,5 +1,6 @@
 import React from 'react'
 import Layout from '../layouts/Layout'
+//@ts-ignore
 import { UilGold , UilShoppingBag, UilStore, UilUserPlus} from '@iconscout/react-unicons'
 import {
      Chart as ChartJS,
@@ -26,7 +27,7 @@ import Image from 'next/image';
    );
    
 
-
+//@ts-ignore
 const Dashborad=({orders, allProducts, avaiable, category, chartdata, bestSeller})=> {
 
      let total_revenue = 0

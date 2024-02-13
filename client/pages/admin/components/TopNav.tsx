@@ -2,9 +2,10 @@ import React from 'react'
 import { useContext } from 'react'
 import { PageContext } from '../context/PageContext'
 import { FaBell, FaSearch } from 'react-icons/fa'
+//@ts-ignore
 import { UilBell , UilSearch, UilBars} from '@iconscout/react-unicons'
 const TopNav = () => {
-     const { navbar, setNavbar } = useContext(PageContext)
+     const { navbar, setNavbar }:any = useContext(PageContext)
   return (
      <div className='flex items-center justify-between w-full h-20 pl-4 mb-8 bg-white ' >
 

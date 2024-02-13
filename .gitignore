@@ -39,7 +39,7 @@ next-env.d.ts
 
 # Local .terraform directories
 **/.terraform/*
-
+/terraform/client/ec2_key_pair
 # .tfstate files
 *.tfstate
 *.tfstate.*

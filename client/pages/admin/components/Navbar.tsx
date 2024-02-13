@@ -4,6 +4,7 @@ import { PageContext } from '../context/PageContext';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import { FaArrowRight, FaCaretRight, FaChevronRight, FaClipboard, FaMoneyBill, FaStore, FaStoreAlt, FaTshirt } from "react-icons/fa";
+// @ts-ignore
 import { UilClipboardAlt,UilEstate , UilShoppingBag, UilInvoice,UilAngleRightB, UilUser} from '@iconscout/react-unicons'
 
 
@@ -12,7 +13,7 @@ const Navbar = () => {
      const token = '>'
      const router = useRouter();
    //  const {page, setPage} = useContext(PageContext)
-     const { navbar, setNavbar } = useContext(PageContext)
+     const { navbar, setNavbar }:any = useContext(PageContext)
      const [page,setPage]=useState("")
 
      const setDashboard =()=>{

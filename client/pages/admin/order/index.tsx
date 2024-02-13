@@ -6,16 +6,18 @@ import { useRouter } from 'next/router'
 import { PageContext } from '../context/PageContext'
 import Link from 'next/link'
 import { FaEye } from 'react-icons/fa'
+//@ts-ignore
 import { UilEye} from '@iconscout/react-unicons'
+import { FormDataType } from '../interface'
 
 
-const Order = ({orders}) => {
+const Order = ({orders}:any) => {
 
 
-     const { navbar, setNavbar } = useContext(PageContext)
+     const { navbar, setNavbar }:any = useContext(PageContext)
 
   const [productForm, setProductForm]= useState(false)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     name: '',
     category: '',
     description: '',
@@ -28,15 +30,15 @@ const Order = ({orders}) => {
   });
 
 
-  const handleChange = (event) => {
+  const handleChange = (event:any) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleImageChange = (event) => {
+  const handleImageChange = (event:any) => {
     setFormData({ ...formData, [event.target.name]: event.target.files[0] });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event:any) => {
     event.preventDefault();
     const form = new FormData();
     form.append('name', formData.name);
@@ -49,6 +51,7 @@ const Order = ({orders}) => {
     form.append('quantity', formData.quantity);
     form.append('price', formData.price);
     try {
+      //@ts-ignore
       await axios.post(`http://${process.env.HOST}:8000/product/`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });

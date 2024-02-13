@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../layouts/Layout'
 import Image from 'next/image'
 
-const OrderDetails = ({orderDetails}) => {
+const OrderDetails = ({orderDetails}:any) => {
 
      let numberOfItems=0
 

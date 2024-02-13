@@ -3,7 +3,7 @@ import { useContext , useEffect, useState } from 'react';
 import { PageContext } from '../context/PageContext';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
-
+// @ts-ignore
 import {  UilUser, UilTimes, UilAngleRightB, UilPadlock,UilShoppingBasket,UilHeartAlt} from '@iconscout/react-unicons'
 
 
@@ -12,7 +12,7 @@ const Navbar = () => {
      const token = '>'
      const router = useRouter();
    //  const {page, setPage} = useContext(PageContext)
-     const { navbar, setNavbar } = useContext(PageContext)
+     const { navbar, setNavbar }:any = useContext(PageContext)
      const [page,setPage]=useState("")
 
      const setDashboard =()=>{
@@ -43,12 +43,12 @@ const Navbar = () => {
      },[router])
 
      const [orderDrop, setOrderDrop]= useState(false)
-     function capitalizeFirstLetter(str) {
+     function capitalizeFirstLetter(str:string) {
           return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
       }
 
 
-     const gotCategory=(category)=>{
+     const gotCategory=(category:any)=>{
           let newString = capitalizeFirstLetter(category)
         
 
@@ -85,7 +85,7 @@ const Navbar = () => {
                
                <div>
                
-                    <div className='flex items-center justify-between text-xl group' onClick={(e)=>gotCategory(e.target.textContent)} >
+                    <div className='flex items-center justify-between text-xl group' onClick={(e:any)=>gotCategory(e.target.textContent)} >
                          <p className='font-bold group-hover:text-brand'>ACCESSORIES</p>
                      
                          <UilAngleRightB className="text-slate-300"/>
@@ -95,7 +95,7 @@ const Navbar = () => {
                
                <div>
               
-                    <div className='flex items-center justify-between text-xl group' onClick={(e)=>gotCategory(e.target.textContent)}>
+                    <div className='flex items-center justify-between text-xl group' onClick={(e:any)=>gotCategory(e.target.textContent)}>
                          <p className='font-bold group-hover:text-brand'>JEWELRY</p>
                      
                          <UilAngleRightB className="text-slate-300"/>
@@ -105,7 +105,7 @@ const Navbar = () => {
                
                <div>
               
-                    <div className='flex items-center justify-between text-xl group' onClick={(e)=>gotCategory(e.target.textContent)}>
+                    <div className='flex items-center justify-between text-xl group' onClick={(e:any)=>gotCategory(e.target.textContent)}>
                          <p className='font-bold group-hover:text-brand'>ACTIVEWEAR</p>
                      
                          <UilAngleRightB className="text-slate-300"/>

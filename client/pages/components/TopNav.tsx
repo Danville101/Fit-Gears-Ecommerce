@@ -10,8 +10,8 @@ import { useRouter } from 'next/router'
 
 
 
-const TopNav = ({cartData}) => {
-     const { navbar, setNavbar, cartNumber, } = useContext(PageContext)
+const TopNav = ({cartData}:any) => {
+     const { navbar, setNavbar, cartNumber }:any = useContext(PageContext)
      const[cartDrop, setCartDrop]=useState(false)
      const [amount ,setAmount]=useState()
 
@@ -21,7 +21,7 @@ const TopNav = ({cartData}) => {
 
      const router=useRouter()
 
-     const ChangeAmount= (id)=>{
+     const ChangeAmount= (id:string)=>{
           fetch(`http://${process.env.HOST}:8000/costumer/cart/${id}`, {
   method: 'PUT',
   headers: {
@@ -38,7 +38,7 @@ const TopNav = ({cartData}) => {
    router.replace(router.asPath)
   
      }
-
+//@ts-ignore
      const incrementAmount= (id, increment_decrement)=>{
           fetch(`http://${process.env.HOST}:8000/costumer/cart/${id}`, {
   method: 'PUT',
@@ -57,7 +57,7 @@ const TopNav = ({cartData}) => {
   
      }
 
-     const deleteItem= (id, )=>{
+     const deleteItem= (id:string )=>{
           fetch(`http://${process.env.HOST}:8000/costumer/cart/${id}`, {
   method: 'DELETE',
   headers: {
@@ -74,7 +74,7 @@ const TopNav = ({cartData}) => {
      }
      
 
-     const searchStore=(e)=>{
+     const searchStore=(e:any)=>{
           e.preventDefault()
           if(e.keyCode==13){
                router.push(`/lisitings/?search=${searchTerm}`)
@@ -82,12 +82,12 @@ const TopNav = ({cartData}) => {
           
      }
 
-     function capitalizeFirstLetter(str) {
+     function capitalizeFirstLetter(str:string) {
           return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
       }
 
 
-     const gotCategory=(category)=>{
+     const gotCategory=(category:any)=>{
           let newString = capitalizeFirstLetter(category)
         
 

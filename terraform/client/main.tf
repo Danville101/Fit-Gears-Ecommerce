@@ -2,62 +2,7 @@ module "vpc" {
   source = "../vpc"
 }
 
-resource "aws_subnet" "public_subnet" {
-     vpc_id =  module.vpc.main_vpc_id
-     cidr_block = "10.0.0.0/24"
-}
 
-
-resource "aws_route_table" "internet_access_rt" {
-     vpc_id = module.vpc.main_vpc_id
-   route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = module.vpc.internet_gateway_id
-  }
-  
-}
-
-
-resource "aws_route_table_association" "internet_access_rt_association" {
-   route_table_id = aws_route_table.internet_access_rt.id
-   subnet_id = aws_subnet.public_subnet.id
-}
-
-
-resource "aws_security_group" "public_access_sg" {
-     name = "public_access_sg"
-     description = "allows internet access"
-     vpc_id = module.vpc.main_vpc_id
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  
-  }
-
- egress {
-     from_port = 0
-     to_port =  0
-     protocol =  "-1"
-     cidr_blocks = ["0.0.0.0/0"]
- }
- 
-}
 
 data "aws_ami" "ubuntu" {
   most_recent = true
@@ -78,26 +23,65 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  subnet_id = aws_subnet.public_subnet.id
-  vpc_security_group_ids =  [aws_security_group.public_access_sg.id]
+  subnet_id = module.vpc.public_subnet_id
+  vpc_security_group_ids =  [module.vpc.public_security_group_id]
   associate_public_ip_address = true
 
   key_name = "ec2_key_pair"
 
+  user_data =  file("./lunch.sh")
+
+ 
+
 provisioner "remote-exec" {
+    inline = [
+     "cd ~",
+      "mkdir -p home/client", // Create the directory if it doesn't exist (-p option to avoid errors if it already exists)
+      "chmod 700 home/client", // Set appropriate permissions (e.g., 755)
+    ]
 
-inline = [ "touch hello.txt",
-"echo hello world from  ec2 >> hello.txt" ]
-}
+    connection {
+      type        = "ssh"
+      host        = self.public_ip
+      user        = "ubuntu"
+      private_key = file("/Users/danvillewilks/Desktop/shh_key_pairs/ec2_key_pair")
+    }
+  }
 
-connection {
+
+
+
+
+
+
+  provisioner "local-exec" {
+     command =  "rsync -avy --progress -e 'ssh -oStrictHostKeyChecking=no -i ec2_key_pair' /Users/danvillewilks/Desktop/DevOps/FitGears/client ubuntu@${aws_instance.web.public_ip}:~/home  "
+  connection {
   type = "ssh"
-  host =  self.public_ip
+  host =  aws_instance.web.public_ip
   user =   "ubuntu"
-  private_key = file("./ec2_key_pair")
-  timeout = "4m"
+  private_key = file("/Users/danvillewilks/Desktop/shh_key_pairs/ec2_key_pair")
 
 }
+}
+
+provisioner "remote-exec" {
+    inline = [
+     "cd home/client" ,
+     "npm install" ,
+     "echo HOST=${module}\n NEXT_PUBLIC_IMAGE_URL=${module}  > .env",
+      "pm2 start npm --name next-app -- run dev",
+
+      "sudo systemctl restart nginx"
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = self.public_ip
+      user        = "ubuntu"
+      private_key = file("/Users/danvillewilks/Desktop/shh_key_pairs/ec2_key_pair")
+    }
+  }
 
   
   tags = {
@@ -108,6 +92,12 @@ connection {
 }
 
 
+
+data "aws_instance" "web" {
+  instance_id = aws_instance.web.id
+}
+
+
 #resource "aws_nat_gateway" "fit_gear_ngw" {
 #     subnet_id =  aws_subnet.public_subnet.id
 #     depends_on = [ module.vpc.internet_gateway_id ]
@@ -115,8 +105,37 @@ connection {
 #  
 #}
 
+#resource "null_resource" "file_copy" {
+#  depends_on = [ aws_instance.web ]
+#
+#connection {
+#  type = "ssh"
+#  host =  aws_instance.web.public_ip
+#  user =   "ubuntu"
+#  private_key = file("/Users/danvillewilks/Desktop/shh_key_pairs/ec2_key_pair")
+#
+#}
+#
+#  provisioner "local-exec" {
+#     command =  "rsync -av --progress -e 'ssh -i ec2_key_pair' /Users/danvillewilks/Desktop/DevOps/FitGears/client ubuntu@${aws_instance.web.public_ip}:~/home "
+#
+#}
+#
+#
+#
+#  
+#}
+#
+
+
+
+
+  
+
+
+
 resource "aws_key_pair" "dev_pair" {
      key_name = "ec2_key_pair"
-     public_key = "" #place public key right here 
+     public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDk8T8Hm1lR2o5PSRBOcmZVl8gTtrVJCdAHqGhJbovS1TKl7gdZEJL3rStadx+Rm/Q4YLx/r8LE3ok2OLo55G7Pxd4iu8sCFTDF2a3rBpBS6rTnZ7rF6yalgCl8uzyl5vK2c9Cs9hPb+Zo43zQjv314Yc4R6rc3/Yo7mQskVG5FxOL04n0gqLP5j+BljOB34i6SRfloep9epqxVRKKPqosUpsRezTq0e8KDtmf5uJleifhuJlfCrc2UPn+XfOwMDo6O5q7hzqCabk8iThIMvHEj0GybvhuikjlhAquV1RfaycVEHor5RItWytqaPYs+auit0l+UFccw0nUk5W9CLSAL danvillewilks@Danvilles-MBP.cust.communityfibre.co.uk" 
   
 }

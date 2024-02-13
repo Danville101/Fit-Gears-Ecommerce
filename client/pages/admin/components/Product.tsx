@@ -3,16 +3,18 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import axios from 'axios';
+import { blob } from 'node:stream/consumers';
+import { FormDataType } from '../interface';
 
 const Product = ({categories, products}:any) => {
 
   const router = useRouter()
   const [productForm, setProductForm]= useState(false)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     name: '',
     category: '',
     description: '',
-    image1: null,
+    image1: null ,
     image2: null,
     image3: null,
     image4: null,
@@ -21,15 +23,15 @@ const Product = ({categories, products}:any) => {
   });
 
 
-  const handleChange = (event) => {
+  const handleChange = (event:any) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleImageChange = (event) => {
+  const handleImageChange = (event:any) => {
     setFormData({ ...formData, [event.target.name]: event.target.files[0] });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event:any) => {
     event.preventDefault();
     const form = new FormData();
     form.append('name', formData.name);
@@ -72,7 +74,7 @@ const Product = ({categories, products}:any) => {
 
       <div className="flex items-center h-20 px-10 mb-5 space-x-10 overflow-scroll border-2 rounded-md w-72 md:w-[40rem] snap-x snap-mandatory">
 
-      {categories.map((e,i)=>(<div key={i}>
+      {categories.map((e:any,i:any)=>(<div key={i}>
              
              <button className='flex items-center justify-center w-24 h-14 rounded-lg bg-[#E8E8E9] text-black hover:shadow-lg snap-center' > {e.name}</button>
            
@@ -107,7 +109,7 @@ const Product = ({categories, products}:any) => {
  </div>
   
 </div>
-{products.map((e,i)=>(
+{products.map((e:any,i:any)=>(
   <div  className='relative w-32  md:w-48 bg-white border-[1.2px] rounded-lg h-48 md:h-80 hover:cursor-pointer hover:border-black group overflow-hidden hover:scale-100 hover:shadow-lg  ' key={i}>
     <div className='absolute top-0 z-50 flex justify-between w-full h-8 px-2 duration-500 -translate-y-10 bg-white opacity-50 group-hover:translate-y-0'>
      <p>${e.price}</p> 
