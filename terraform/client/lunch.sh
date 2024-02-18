@@ -25,5 +25,7 @@ mkdir -p home/client
 chmod 700 home/client
 npm install pm2 -g
 
+
+
 sudo systemctl start nginx
 

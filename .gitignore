@@ -28,6 +28,7 @@ yarn-error.log*
 # local env files
 **/*.env
 
+**/ec2_key_pair
 
 # vercel
 .vercel

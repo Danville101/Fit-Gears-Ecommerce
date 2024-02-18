@@ -81,19 +81,25 @@ resource "aws_security_group" "public_access_sg" {
 
 resource "aws_subnet" "private_subnet" {
   vpc_id =  aws_vpc.fit_gear_vpc.id
-  cidr_block = "10.0.0.1/24"
+  cidr_block = "10.0.1.0/24"
 }
 
 
+resource "aws_eip" "myeip"{
+   domain   = "vpc"
+}
+
 resource "aws_nat_gateway" "fit_gear_ngw" {
      subnet_id =  aws_subnet.public_subnet.id
-     depends_on = [ aws_internet_gateway.fit_gear_igw.id ]
+     depends_on = [ aws_internet_gateway.fit_gear_igw ]
+     allocation_id = aws_eip.myeip.id
 
   
 }
 
 resource "aws_route_table" "nat_internet_access_rt" {
      vpc_id =  aws_vpc.fit_gear_vpc.id
+     
    route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_nat_gateway.fit_gear_ngw.id
@@ -112,6 +118,13 @@ resource "aws_security_group" "private_access_sg" {
      name = "private_access_sg"
      description = "allows ssh to private resources"
      vpc_id =  aws_vpc.fit_gear_vpc.id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
 
   ingress {
@@ -132,3 +145,12 @@ resource "aws_security_group" "private_access_sg" {
 
 
      ## PRIVATE RESOURCES ##
+
+
+
+resource "aws_vpc_endpoint" "s3_endpoint" {
+ vpc_id = aws_vpc.fit_gear_vpc.id 
+  service_name = "com.amazonaws.us-east-1.s3"
+  vpc_endpoint_type = "Gateway"
+  
+}

@@ -1,3 +1,3 @@
-output "private_subnet_id" {
-  value = aws_subnet.private_subnet.id
+output "private_instance_ip" {
+  value = aws_instance.server.private_ip
 }

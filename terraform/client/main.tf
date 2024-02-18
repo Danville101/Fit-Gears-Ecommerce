@@ -2,8 +2,9 @@ module "vpc" {
   source = "../vpc"
 }
 
-
-
+module "server"{
+  source = "../server"
+}
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -69,7 +70,7 @@ provisioner "remote-exec" {
     inline = [
      "cd home/client" ,
      "npm install" ,
-     "echo HOST=${module}\n NEXT_PUBLIC_IMAGE_URL=${module}  > .env",
+     "echo HOST=${module.server.private_instance_ip}\n NEXT_PUBLIC_IMAGE_URL=${module.server.private_instance_ip}  > .env",
       "pm2 start npm --name next-app -- run dev",
 
       "sudo systemctl restart nginx"
