@@ -2,6 +2,10 @@ module "vpc" {
   source = "../vpc"
 }
 
+module "database" {
+  source = "../database"
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -27,7 +31,12 @@ resource "aws_instance" "server" {
 
   key_name = "ec2_key_pair"
 
-  user_data =  file("./lunch.sh")
+  user_data =  <<-EOF
+    #!/bin/bash
+    $(cat ./lunch.sh)
+  "SQLALCHEMY_DATABASE_URL=postgresql://postgres:villabean101@${module.database.private_ip}/Ecom5"
+  EOF
+
 
  
 
