@@ -28,7 +28,7 @@ yarn-error.log*
 # local env files
 **/*.env
 
-**/ec2_key_pair
+
 
 # vercel
 .vercel
@@ -44,7 +44,7 @@ next-env.d.ts
 # .tfstate files
 *.tfstate
 *.tfstate.*
-
+**/ec2_key_pair
 # Crash log files
 crash.log
 crash.*.log
