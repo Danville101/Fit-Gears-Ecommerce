@@ -14,8 +14,8 @@ This guide provides instructions for running our application using Docker Compos
 1. **Clone the Repository:**
 
 ```bash
-   git clone <repository-url>
-   cd <project-directory> 
+   git clone https://github.com/Danville101/Fit-Gears-Ecommerce
+   cd Fit-Gears-Ecommerce
 ```
 
 2. **Start Docker Containers:**
