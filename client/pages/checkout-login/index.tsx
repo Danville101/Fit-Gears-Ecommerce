@@ -21,7 +21,7 @@ const Cart = ({cartData}:any) => {
      const loginFunc =(e:any)=>{
           e.preventDefault()
 
-          fetch(`http://${process.env.HOST}:8000/login/`, {
+          fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/login/`, {
                method: 'POST',
                mode: 'cors',
                headers: {
@@ -126,7 +126,7 @@ export async function getServerSideProps (context:any){
    
    
      
-     const res2 = await fetch(`http://${process.env.HOST}:8000/costumer/cart/`,{
+     const res2 = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/cart/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

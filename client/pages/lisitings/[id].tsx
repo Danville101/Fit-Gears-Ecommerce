@@ -5,7 +5,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { UilAngleRightB, UilAngleLeft , UilMinus,UilPlus,UilShoppingBag, UilShoppingBasket, UilThumbsUp, UilThumbsDown} from '@iconscout/react-unicons'
 
+
 const Detail = ({product, cartData}) => {
+     
 
      const [imageState, setImageState]=useState(1)
      const [quantity, setQuantity]=useState(1)
@@ -34,7 +36,8 @@ const Detail = ({product, cartData}) => {
 
 
      const addProduct= (price,product_name )=>{
-          fetch(`http://${process.env.HOST}:8000/costumer/cart/`, {
+          
+          fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/cart/`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -47,9 +50,12 @@ const Detail = ({product, cartData}) => {
     "product_name": product_name,
     "quantity": quantity
   })
+}).then(()=>{
+   router.replace(router.asPath)
+     
 });
 
-   router.replace(router.asPath)
+
   
      }
 
@@ -192,7 +198,7 @@ export async function getServerSideProps (context){
 
      const id =  Number(context.query.id)
 
-     const res = await fetch(`http://${process.env.HOST}:8000/costumer/product/${id}`,{
+     const res = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/product/${id}`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -205,7 +211,7 @@ export async function getServerSideProps (context){
 
 
 
-     const res2 = await fetch(`http://${process.env.HOST}:8000/costumer/cart/`,{
+     const res2 = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/cart/`,{
           headers: {
                'Accept': 'application/json',
                'Content-Type': 'application/json',

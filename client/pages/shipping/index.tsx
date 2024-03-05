@@ -40,7 +40,7 @@ const Cart = ({cartData}) => {
 
      const checkOut=(e)=>{
         e.preventDefault()
-        fetch(`http://${process.env.HOST}:8000/costumer/checkout/`,{
+        fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/checkout/`,{
           "method":"POST",
           body:JSON.stringify({
             "first_name": formData.first_name,
@@ -183,7 +183,7 @@ export async function getServerSideProps (context){
    
    
      
-     const res2 = await fetch(`http://${process.env.HOST}:8000/costumer/cart/`,{
+     const res2 = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/cart/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

@@ -52,7 +52,7 @@ const Order = ({orders}:any) => {
     form.append('price', formData.price);
     try {
       //@ts-ignore
-      await axios.post(`http://${process.env.HOST}:8000/product/`, formData, {
+      await axios.post(`http://${process.env.NEXT_PUBLIC_HOST}:8000/product/`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       alert('Product added successfully');
@@ -66,7 +66,7 @@ const Order = ({orders}:any) => {
    const router = useRouter()
 
      const setPublished=(id)=>{
-          fetch(`http://${process.env.HOST}:8000/admin/product/${id}`,
+          fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/admin/product/${id}`,
           {
                method: 'PUT',
                mode: 'cors',
@@ -204,7 +204,7 @@ export async function getServerSideProps(ctx:NextPageContext) {
    
      
    
-     const res = await fetch(`http://${process.env.HOST}:8000/admin/orders/`,{
+     const res = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/admin/orders/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

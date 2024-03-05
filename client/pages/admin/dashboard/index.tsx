@@ -273,7 +273,7 @@ export default Dashborad
 
 export async function getServerSideProps (){
 
-     const res = await fetch(`http://${process.env.HOST}:8000/admin/orders/`,{
+     const res = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/admin/orders/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -285,7 +285,7 @@ export async function getServerSideProps (){
      const  orders= await res.json()
 
 
-     const res2 = await fetch(`http://${process.env.HOST}:8000/admin/products_all/`,{
+     const res2 = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/admin/products_all/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -298,7 +298,7 @@ export async function getServerSideProps (){
 
   
 
-     const res3 = await fetch(`http://${process.env.HOST}:8000/admin/avaiable_products/`,{
+     const res3 = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/admin/avaiable_products/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -310,7 +310,7 @@ export async function getServerSideProps (){
      const  avaiable= await res3.json()
 
 
-     const res4 = await fetch(`http://${process.env.HOST}:8000/category/`,{
+     const res4 = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/category/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -323,7 +323,7 @@ export async function getServerSideProps (){
 
 
 
-     const res5 = await fetch(`http://${process.env.HOST}:8000/admin/daily_revenue/`,{
+     const res5 = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/admin/daily_revenue/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -334,7 +334,7 @@ export async function getServerSideProps (){
    
      const  chartdata= await res5.json()
      
-     const res6 = await fetch(`http://${process.env.HOST}:8000/admin/daily_best_seller/`,{
+     const res6 = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/admin/daily_best_seller/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

@@ -125,7 +125,7 @@ export async function getServerSideProps({params}) {
    
      const { id } = params;
    
-     const res = await fetch(`http://${process.env.HOST}:8000/admin/order/${id}`,{
+     const res = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/admin/order/${id}`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

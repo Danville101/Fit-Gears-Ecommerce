@@ -22,7 +22,7 @@ const TopNav = ({cartData}:any) => {
      const router=useRouter()
 
      const ChangeAmount= (id:string)=>{
-          fetch(`http://${process.env.HOST}:8000/costumer/cart/${id}`, {
+          fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/cart/${id}`, {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const TopNav = ({cartData}:any) => {
      }
 //@ts-ignore
      const incrementAmount= (id, increment_decrement)=>{
-          fetch(`http://${process.env.HOST}:8000/costumer/cart/${id}`, {
+          fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/cart/${id}`, {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const TopNav = ({cartData}:any) => {
      }
 
      const deleteItem= (id:string )=>{
-          fetch(`http://${process.env.HOST}:8000/costumer/cart/${id}`, {
+          fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/cart/${id}`, {
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/json',

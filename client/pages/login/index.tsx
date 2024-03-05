@@ -43,7 +43,7 @@ const Cart = ({cartData}) => {
      const loginFunc =(e:any)=>{
           e.preventDefault()
 
-          fetch(`http://${process.env.HOST}:8000/costumer/login/`, {
+          fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/login/`, {
                method: 'POST',
                mode: 'cors',
                headers: {
@@ -79,7 +79,7 @@ const Cart = ({cartData}) => {
      const regFunc =(e:any)=>{
           e.preventDefault()
 
-          fetch(`http://${process.env.HOST}:8000/costumer/register/`, {
+          fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/register/`, {
                method: 'POST',
                mode: 'cors',
                headers: {
@@ -119,7 +119,7 @@ const Cart = ({cartData}) => {
      const restPassword =(e:any)=>{
           e.preventDefault()
 
-          fetch(`http://${process.env.HOST}:8000/costumer/reset_password/`, {
+          fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/reset_password/`, {
                method: 'POST',
                mode: 'cors',
                headers: {
@@ -285,7 +285,7 @@ export async function getServerSideProps (context){
    
    
      
-     const res2 = await fetch(`http://${process.env.HOST}:8000/costumer/cart/`,{
+     const res2 = await fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/cart/`,{
        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
