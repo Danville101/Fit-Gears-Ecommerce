@@ -119,7 +119,7 @@ const Navbar = () => {
                <p className='text-xl font-bold '>My Account</p>
                <div className="flex-col mt-4 space-y-2">
                     <div className='flex items-center font-thin group hover:cursor-pointer'>
-                         <Link href={"#"}>
+                         <Link href={"/login"}>
                          <div className='flex items-center'>
                          <UilPadlock/>
                          <p className='ml-1 text-md text-slate-500'>Sign In</p>
@@ -127,7 +127,7 @@ const Navbar = () => {
                          </Link>
                     </div>
                     <div className='flex items-center font-thin group hover:cursor-pointer'>
-                         <Link href={"#"}>
+                         <Link href={"/login"}>
                          <div className='flex items-center'>
                          <UilUser/>
                          <p className='ml-1 text-md text-slate-500'>Resgister</p>
@@ -135,7 +135,7 @@ const Navbar = () => {
                          </Link>
                     </div>
                     <div className='flex font-thin group hover:cursor-pointer'>
-                         <Link href={"#"}>
+                         <Link href={"/shipping"}>
                               <div className='flex items-center'>
                          <UilShoppingBasket/>
                          <p className='ml-1 text-md text-slate-500'>View Cart</p>

@@ -15,8 +15,6 @@ class UpdateItemRequest(BaseModel):
 
 class CreateShippingRequest(BaseModel):
      
-
-
      first_name :str
      last_name: str
      email:str

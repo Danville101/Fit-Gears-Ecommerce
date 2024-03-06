@@ -10,12 +10,12 @@ function Layout ({children}:any)  {
   return (
       <PageProvider>
     <div className='flex w-screen h-screen'>
-     <div className={` lg:w-1/4 ${navbar?"w-1/4  z-50":" w-0 "} duration-500 overflow-hidden`}>
+     <div className={` lg:w-auto ${navbar?"w-1/4  z-50":" w-0 "} duration-500 overflow-hidden`}>
          <Navbar />  
      </div>
      
     
-     <div className='flex flex-col w-screen lg:w-3/4 overflow-x-clip'>
+     <div className='flex flex-col w-screen lg:full overflow-x-clip'>
           <div></div>
      <TopNav/>
 

@@ -99,12 +99,12 @@ const Order = ({orders}:any) => {
                
                 <div className=' h-screen mt-6 bg-[#F5F6F4] flex flex-col w-full   '>
           
-          <div className='px-4'>
+          <div className='px-4 pt-8'>
          
 
 
               
-              <div className='items-center w-full px-4 py-4 overflow-x-scroll duration-500 bg-white rounded-lg shadow-sm hover:-translate-y-4'>
+              <div className='items-center w-full px-4 py-4 overflow-x-scroll duration-500 bg-white rounded-lg shadow-sm hover:-translate-y-4 '>
                   <div className=''><p>Orders</p>
                   
                    <div className='flex justify-between mt-2 md:flex-col md:space-y-4 md:right-0 '>

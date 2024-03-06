@@ -112,7 +112,7 @@ const Products = ({product, page, search}:any) => {
 
 
               
-              <div className='items-center w-full px-4 py-4 overflow-x-scroll duration-500 bg-white rounded-lg shadow-sm hover:-translate-y-4'>
+              <div className='items-center w-full px-4 py-4 overflow-x-scroll duration-500 bg-white rounded-lg shadow-sm hover:-translate-y-4 mt-8'>
                   <div className=''><p>Product List</p>
                   
                    <div className='flex justify-between mt-2 md:flex-col md:space-y-4 md:right-0 '>

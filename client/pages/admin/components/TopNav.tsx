@@ -18,8 +18,7 @@ const TopNav = () => {
 
                
                <form className='hidden md:block'>
-               <input className='bg-[#F5F6F4] h-10 pl-4 rounded-l-md' placeholder='Search Fit Gears'/>
-               <button className='bg-[#FAA53B] h-10 w-10 rounded-r-md' ><FaSearch className='ml-3 text-white '/></button>
+    
                </form>
 
                

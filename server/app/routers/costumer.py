@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException, Response, File , Form, UploadFile, Request, Header
+from fastapi import FastAPI, Depends, HTTPException, Response, File , Form, UploadFile, Request, Header, status
 from fastapi.responses import JSONResponse
 from fastapi.requests import Request
 from app.schema.user_schema import CreateUserRequest, LoginResquest, ResetPasswordRequest
@@ -27,6 +27,7 @@ import stripe
 from starlette.responses import RedirectResponse
 from app.services.recommendation import get_recommendation
 import os
+from flask import redirect
 
 from app.routers.admin import admin_app
 
@@ -46,7 +47,7 @@ stripe.api_key="sk_test_51Lij1LKl07rHxPLvCex6bW4vc1YdGCGyAuSzL6qWlJMLmuNMx0DgiP1
 async def rest(req: ResetPasswordRequest,db: Session = Depends(get_db)):
      user = db.query(User).filter(User.email == req.email).first()
      if not user:
-          raise HTTPException(status_code=40, detail="Email dont exist")
+          raise HTTPException(status_code=400, detail="Email dont exist")
      else:
        template =env.get_template('resetpaassword.html')
        template_data = {'user_name': user.user_name}
@@ -272,132 +273,137 @@ async def category(db: Session=Depends(get_db)):
      
 @costumer_app.post("/checkout/")
 async def checkout( request:Request, req: CreateCheckoutRequest, db: Session = Depends(get_db)):
+     try:
      
-     user_agent = request.headers.get('User-Agent')
-     latest = db.query(Order).order_by(desc(Order.date_created)).first()
-     
-     if latest == None:
-          order_num=1
-     else:
-          order_num = latest.id +1
-     
-     total= 0
-     
-     for order_items in req.items:
-          total += order_items.price * order_items.quantity 
-     
-
-     shippig_cost= round(total/100*1.2, 2)
-     
-     new_order=Order(
-     
-     costumer_email = "danvil@gmaihl.com",
-     total_cost = round(total,2),
-     status = "processing",
-     order_number = order_num 
-     )
-     
-     db.add(new_order)
-     db.flush()
-     db.commit()
-
-     
-
-     
-     
-     new_shipping= Shipping(
-           first_name= req.first_name,
-           last_name = req.last_name,
-           email = req.email,
-           address_line1 = req.address_line1,
-           address_line2 = req.address_line2,
-           country_state = req.country_state,
-           postcode_zipcode= req.postcode_zipcode,
-           city = req.city,
-           phone = req.phone,
-           order_number =order_num
-           )
-     db.add(new_shipping)
-     db.commit()
-    
-     
-     for order_item in req.items:
-          new_order_item= OrderItem(
-          price = order_item.price,
-    quantity = order_item.quantity,
-    order_number = order_num,
-    product_name = order_item.product
-          )
-          
-          db.add(new_order_item)
-          db.commit()
-     
-     customer = stripe.Customer.create(
-            description="danvil@gmaihl.com",
-             )
-        
-     items = []
-     
-     for item in req.items:
-        prodcut =db.query(Product).filter(Product.name== item.product).first()
-        image = str(prodcut.image1).replace(" ","%20")
-        prodcut.quantity = prodcut.quantity - item.quantity
-        db.commit()
-        
-        data= {
-           
-      'price_data': {
-        'currency': 'usd',
-        'product_data': {
-          'name': item.product,
-          'images':[f'http://127.0.0.1:8000/{image}']
-                
-        },
-        'unit_amount':int(item.price * 100) ,
-      },
-      'quantity': item.quantity,
-
-  
+      user_agent = request.headers.get('User-Agent')
+      latest = db.query(Order).order_by(desc(Order.date_created)).first()
       
-    }
-        print(f'http://127.0.0.1:8000/{image}')
+      if latest == None:
+           order_num=1
+      else:
+           order_num = latest.id +1
+      
+      total= 0
+      
+      for order_items in req.items:
+           total += order_items.price * order_items.quantity 
+      
+ 
+      shippig_cost= round(total/100*1.2, 2)
+      
+      new_order=Order(
+      
+      costumer_email = req.email,
+      total_cost = round(total,2),
+      status = "processing",
+      order_number = order_num 
+      )
+      
+      db.add(new_order)
+      db.flush()
+      db.commit()
+ 
+      
+ 
+      
+      
+      new_shipping= Shipping(
+            first_name= req.first_name,
+            last_name = req.last_name,
+            email = req.email,
+            address_line1 = req.address_line1,
+            address_line2 = req.address_line2,
+            country_state = req.country_state,
+            postcode_zipcode= req.postcode_zipcode,
+            city = req.city,
+            phone = req.phone,
+            order_number =order_num
+            )
+      db.add(new_shipping)
+      db.commit()
+     
+      
+      for order_item in req.items:
+           new_order_item= OrderItem(
+           price = order_item.price,
+           quantity = order_item.quantity,
+           order_number = order_num,
+           product_name = order_item.product
+           )
+           
+           db.add(new_order_item)
+           db.commit()
+      
+      customer = stripe.Customer.create(
+             description=req.email,
+              )
          
-        items.append(data)
+      items = []
+      
+      for item in req.items:
+         prodcut =db.query(Product).filter(Product.name== item.product).first()
+         image = str(prodcut.image1).replace(" ","%20")
+         prodcut.quantity = prodcut.quantity - item.quantity
+         db.commit()
+         
+         data= {
+            
+       'price_data': {
+         'currency': 'usd',
+         'product_data': {
+           'name': item.product,
+           'images':[f'http://127.0.0.1:8000/{image}']
+                 
+         },
+         'unit_amount':int(item.price * 100) ,
+       },
+       'quantity': item.quantity,
+ 
+   
+       
+         }
+         print(f'http://127.0.0.1:8000/{image}')
+          
+         items.append(data)
+           
+      
+         checkout_session =   stripe.checkout.Session.create(
+         customer=customer["id"],
+         success_url=f"http://localhost:3000/success",
+         cancel_url=f"http://localhost:3000/cancel",
+         payment_method_types=["card"],
+         mode="payment",
+         line_items= items,
+             metadata={
+         "order_number": order_num,
+         "subtotal":round(total,2),
+          "shipping":shippig_cost,
+          "total":round(total,2)+shippig_cost,
+          "name": new_shipping.first_name+" "+ new_shipping.last_name,
+                       "place":new_shipping.address_line1,
+                       "postcode":new_shipping.postcode_zipcode,
+                       "country": new_shipping.country_state,
+                       "phone": new_shipping.phone
+          
+         },
+          )
+      
+      cart = db.query(Cart).filter(Cart.user_agent == user_agent).first()
+      db.delete(cart)
+      db.commit()
+      
+      
+     except Exception as e:
+          print(e)
+          return Response("Something went wrong", status_code=status.HTTP_402_PAYMENT_REQUIRED)
           
      
-     checkout_session = stripe.checkout.Session.create(
-        customer=customer["id"],
-        success_url=f"http://localhost:8000/success",
-        cancel_url=f"http://localhost:8000/cancel",
-        payment_method_types=["card"],
-        mode="payment",
-        line_items= items,
-            metadata={
-        "order_number": order_num,
-        "subtotal":round(total,2),
-         "shipping":shippig_cost,
-         "total":round(total,2)+shippig_cost,
-         "name": new_shipping.first_name+" "+ new_shipping.last_name,
-                      "place":new_shipping.address_line1,
-                      "postcode":new_shipping.postcode_zipcode,
-                      "country": new_shipping.country_state,
-                      "phone": new_shipping.phone
-         
-    },
-    )
-     
-     cart = db.query(Cart).filter(Cart.user_agent == user_agent).first()
-     db.delete(cart)
-     db.commit()
-     
-     
-     
-       
-  
-     
-     return RedirectResponse( checkout_session.url, status_code=303)
 
+     response = JSONResponse( content= f"{checkout_session.url}")
 
+     print(response.body)
+     return response
+   
 
 
 
@@ -478,7 +484,7 @@ async def check(request: Request,  db:Session = Depends(get_db)):
          order_items=db.query(OrderItem).filter(OrderItem.order_number== metadata.order_number).all()
          for items in order_items:
               product = db.query(Product).filter(Product.name== items.product).first()
-              product.quantity = prodcut.quantity + item.quantity
+              product.quantity = product.quantity + item.quantity
               db.commit()
         
                
@@ -508,7 +514,7 @@ async def createuser(req: CreateUserRequest, db:Session = Depends(get_db)):
                "Id": new_user.id
           }
      else:
-          raise HTTPException(status_code=40, detail="Password dont match")
+          raise HTTPException(status_code=400, detail="Password dont match")
 
 
 
@@ -530,7 +536,7 @@ async def login(req: LoginResquest, db:Session=Depends(get_db)):
         response = JSONResponse("ok")
              
         response.set_cookie("token", token, httponly=True, secure=True, samesite="none" )
-        print("wow")
+   
         
         return response
         

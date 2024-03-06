@@ -52,38 +52,7 @@ const Index = () => {
              });
      }
 
-    //const Regusterfunc =(e:any)=>{
-    //     e.preventDefault()
 
-    //     fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/api/user/`, {
-    //          method: 'POST',
-    //          mode: 'cors',
-    //          body: JSON.stringify({
-    //            email: email,
-    //            password: password,
-    //            password2:password2,
-    //            first_name:first_name,
-    //            last_name:last_name,
-    //            username:username
-
-    //          }), credentials: "include",
-    //          headers: {
-    //            'Content-Type': 'application/json'
-    //          }
-    //        })
-    //        .then(response => {
-    //          // response.status, response.statusText, response.headers will not be available 
-    //          
-    //          return response.text();
-    //
-    //        })
-    //        .then(data => {
-    //     
-    //        })
-    //        .catch(error => {
-    //          console.error('Error:', error);
-    //        });
-    //}
      
 
   return (
@@ -98,20 +67,6 @@ const Index = () => {
 
           </form>
      </div>
-
-     {//div className='mt-40'>
-      //   <form className='flex flex-col space-y-4' onSubmit={Regusterfunc}>
-      //        <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Email' type="email" />
-      //        <input value={password} onChange={(e)=>setPassword(e.target.value)} placeholder='Password' type="password" />
-      //        <input value={password2} onChange={(e)=>setPassword2(e.target.value)} placeholder='Password2' type="password" />
-      //        <input value={first_name} onChange={(e)=>setiFrst_name(e.target.value)} placeholder='FirstName' type="text" />
-      //        <input value={last_name} onChange={(e)=>setLast_name(e.target.value)} placeholder='LastName' type="text" />
-      //        <input value={username} onChange={(e)=>setUsername(e.target.value)} placeholder='Username' type="text" />
-      //        <button type='submit' className=' bg-black/10 rounded-2xl'> Login</button>
-
-      //   </form>
-      //</div>
-    }
 
 
 

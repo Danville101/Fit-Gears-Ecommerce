@@ -111,45 +111,7 @@ export default function Home({categories, cartData}) {
       </div>
      
         
-      ))}
-
-      
-     
-     
-   
-
-
-  
-    </div>
-      
-    <div className='flex items-center justify-center w-screen mt-12'>
-      <div className="flex-col text-center w-80">
-
-           <p className='text-4xl font-bold'>Special Offer</p>
-           <p className='text-lg font-thin text-gray-500'>Don`&apos;`t Miss Today`&apos;`s Featured Deals</p>
-      </div>
-   
-    </div>
-
-    <div className='flex items-center px-4 h-80'>
-      <div className="flex items-center justify-between w-full">
-      <button className='flex items-center justify-center w-8 h-6 translate-x-4 bg-white text-stone-300 hover:bg-black hover:text-white'> <UilAngleLeft/> </button>
-
-        <div className='flex w-full space-x-2 overflow-scroll'>
-     
-        <div className='flex-col w-1/2 bg-black/20 h-80'>
-          <div className='w-full h-20 bg-white translate-y-60 opacity-70 '></div>
-
-        </div>
-        <div className='flex-col w-1/2 bg-black/20 h-80'>
-          <div className='w-full h-20 bg-white translate-y-60 opacity-70'></div>
-
-        </div>
-        </div>
-        <button className='flex items-center justify-center w-8 h-6 -translate-x-4 bg-white text-stone-300 hover:bg-black hover:text-white'> <UilAngleRightB/> </button>
-        
-      </div>
-      
+      ))}  
     </div>
    <div className='px-4'>
     <div className='grid grid-cols-1 gap-6 mt-20 md:grid-cols-2 lg:grid-cols-3'>

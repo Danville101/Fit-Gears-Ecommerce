@@ -95,7 +95,7 @@ const Dashborad=({orders, allProducts, avaiable, category, chartdata, bestSeller
           
                 <div className='px-4'>
                
-               <div className='grid grid-cols-1 gap-8 mb-8 md:grid-cols-2 gap-x-4 xl:grid-cols-4'>
+               <div className='grid grid-cols-1 gap-8 mb-8 md:grid-cols-2 gap-x-4 xl:grid-cols-4 xl:pt-8'>
                     
                     <div className='flex items-center w-full px-4 py-4 duration-500 bg-white rounded-lg shadow-sm h-28 hover:-translate-y-4'>
                          <div className='bg-[#28A487] h-20 w-[0.2rem]'></div>
@@ -156,7 +156,7 @@ const Dashborad=({orders, allProducts, avaiable, category, chartdata, bestSeller
 
                <div className='items-center w-full px-4 py-4 duration-500 bg-white rounded-lg shadow-sm h-60 hover:-translate-y-4 '>
                     <p>Category</p>
-                         <div className='flex mx-4 mt-4 space-x-8 overflow-scroll'>
+                         <div className='flex mx-4 mt-4 space-x-8 overflow-auto'>
 
                               {
                                    category.map((e,i)=>(
@@ -190,7 +190,7 @@ const Dashborad=({orders, allProducts, avaiable, category, chartdata, bestSeller
                     </div>
                     <div className='items-center w-full px-4 py-4 duration-500 bg-white rounded-lg shadow-sm h-80 hover:-translate-y-4 '>
                          <p>Best Selling Product</p>
-                         <div className='overflow-scroll'>
+                         <div className='overflow-auto'>
                          {bestSeller.map((e,i)=>(
                               
                               <div className="flex items-center justify-between pt-2 my-4 border-t" key={i}>
@@ -237,25 +237,7 @@ const Dashborad=({orders, allProducts, avaiable, category, chartdata, bestSeller
                     </div>
 
 
-                    <div className='items-center w-full px-4 py-4 mt-8 mb-8 duration-500 bg-white rounded-lg shadow-sm h-72 hover:-translate-y-4'>
-                         <p>To Do List</p>
-
-                         <div className='flex pb-2 border-b'>
-                              <input type='checkbox' className='w-6'/>
-                              <div className='flex flex-col ml-4'> <p className='font-semibold'>Do whatever</p>
-                              <p className='text-sm'>8 hours</p></div>
-                         
-                         </div>
-                         
-
-                         <div className='mt-4'>
-                              <form className='flex justify-between'>
-                                   <input className='w-full pl-2 mr-4 border rounded-md' placeholder='Enter Task Name'/>
-                                   <button className='bg-[#28A487] text-white rounded-md px-6 py-1 w-24'>Add task</button>
-                              </form>
-                         </div>
-                        
-                    </div>
+    
                     
                
                

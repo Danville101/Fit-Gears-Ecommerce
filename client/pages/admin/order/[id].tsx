@@ -16,7 +16,7 @@ const OrderDetails = ({orderDetails}:any) => {
 
 
                
-               <div className=' h-screen mt-6 bg-[#F5F6F4] flex flex-col w-full   '>
+               <div className=' h-screen mt-6 bg-[#F5F6F4] flex flex-col w-full pt-8  '>
          
          <div className='px-4'>
         
@@ -35,7 +35,7 @@ const OrderDetails = ({orderDetails}:any) => {
       
                   </div></div>
                   
-           <div className='bg-[#28A487] text-white py-2 pl-2 font-bold '>ITEMS</div>
+           <div className='bg-[#28A487] text-white py-2 pl-2 font-bold mb-8'>ITEMS</div>
            <div>
 
            </div>

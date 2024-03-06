@@ -10,6 +10,8 @@ import { useRouter } from 'next/router'
 
 
 const Cart = ({cartData}) => {
+  const [amount ,setAmount]=useState<string>()
+
 
      interface Item{
       price: number,
@@ -18,6 +20,60 @@ const Cart = ({cartData}) => {
     
       
      }
+
+
+     const ChangeAmount= (id)=>{
+      fetch(`http://127.0.0.1:8000/costumer/cart/${id}`, {
+method: 'PUT',
+headers: {
+'Content-Type': 'application/json',
+'Accept': '*/*',
+'Accept-Encoding': 'gzip, deflate, br',
+'Connection': 'keep-alive'
+},
+body: JSON.stringify({
+ "amount":amount
+})
+});
+
+router.replace(router.asPath)
+
+ }
+
+     const incrementAmount= (id, increment_decrement)=>{
+      fetch(`http://127.0.0.1:8000/costumer/cart/${id}`, {
+method: 'PUT',
+headers: {
+'Content-Type': 'application/json',
+'Accept': '*/*',
+'Accept-Encoding': 'gzip, deflate, br',
+'Connection': 'keep-alive'
+},
+body: JSON.stringify({
+ "increment_decrement":increment_decrement
+})
+});
+
+router.replace(router.asPath)
+
+ }
+
+     const deleteItem= (id:number )=>{
+      fetch(`http://127.0.0.1:8000/costumer/cart/${id}`, {
+method: 'DELETE',
+headers: {
+'Content-Type': 'application/json',
+'Accept': '*/*',
+'Accept-Encoding': 'gzip, deflate, br',
+'Connection': 'keep-alive'
+},
+
+});
+
+router.replace(router.asPath)
+
+ }
+ 
 
      const handleChange = (event) => {
       setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -54,9 +110,12 @@ const Cart = ({cartData}) => {
         "phone":formData.phone,
         "items": cartData.to_send_data
           })
-        }).then((response)=>{
+        }).then( async (response)=>{
 
-          router.push(response.url)
+          let data = await response.json()
+       
+
+          router.push(data)
         })
       
      }
