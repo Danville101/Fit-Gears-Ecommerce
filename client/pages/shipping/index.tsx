@@ -127,7 +127,14 @@ router.replace(router.asPath)
     <div className='flex flex-col bg-[#F2F3F4]'>
 
      <div className='flex items-center justify-center w-screen h-16 bg-white'>
-     <p className='text-2xl font-extrabold'>Fit Gears</p>
+
+      <Link  href={"/"}>
+
+            <button className='text-2xl font-extrabold hover:cursor-pointer '>Fit Gears</button>
+      </Link>
+
+
+ 
      </div>
      <div className='flex flex-col px-4 py-8 lg:flex lg:flex-row lg:justify-center lg:space-x-4'>
       <form className='flex flex-col mb-4 lg:w-[20vw]' onSubmit={checkOut}>  
@@ -177,7 +184,7 @@ router.replace(router.asPath)
           <input className="w-full h-10 pl-4 border outline-none" name="phone" type="text" value={formData.phone} onChange={handleChange}/>
           
         </div>
-        <input className='w-full h-10 pl-4 mt-4 text-white bg-black border outline-none' type='submit' value={"PROCESSED TO BILLING"} />
+        <input className='w-full h-10 pl-4 mt-4 hover:text-white bg-black border outline-none hover:cursor-pointer text-white/50' type='submit' value={"PROCESSED TO BILLING"} />
       </form>
       <div className=" lg:w-[15vw] lg:mt-16">
         <div className="flex flex-col ">

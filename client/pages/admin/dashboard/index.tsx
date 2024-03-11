@@ -156,7 +156,7 @@ const Dashborad=({orders, allProducts, avaiable, category, chartdata, bestSeller
 
                <div className='items-center w-full px-4 py-4 duration-500 bg-white rounded-lg shadow-sm h-60 hover:-translate-y-4 '>
                     <p>Category</p>
-                         <div className='flex mx-4 mt-4 space-x-8 overflow-auto'>
+                         <div className='flex mx-4 mt-4 space-x-8 overflow-auto 2xl:justify-between 2xl:px-8'>
 
                               {
                                    category.map((e,i)=>(
@@ -181,14 +181,17 @@ const Dashborad=({orders, allProducts, avaiable, category, chartdata, bestSeller
 
                     <div className='grid grid-cols-1 mt-10 gap-y-8 lg:grid-cols-2 gap-x-6'>
 
-                    <div className='items-center w-full px-4 py-4 duration-500 bg-white rounded-lg shadow-sm h-80 hover:-translate-y-4 '>
+                    <div className='items-center w-full px-4 py-4 duration-500 bg-white rounded-lg shadow-sm hover:-translate-y-4 h-80 xl:h-[40vh] pb-8   '>
                          <p>Revenue Report</p>
+                         <div className='w-full justify-center items-center flex  h-72 xl:h-[34vh]'>
+  <Line  options={options} data={data}/>
 
-                         <Line  options={options} data={data}/>
+                         </div>
+                       
                    
                         
                     </div>
-                    <div className='items-center w-full px-4 py-4 duration-500 bg-white rounded-lg shadow-sm h-80 hover:-translate-y-4 '>
+                    <div className='items-center w-full px-4 py-4 duration-500 bg-white rounded-lg shadow-sm h-80 xl:h-[40vh] hover:-translate-y- overflow-auto '>
                          <p>Best Selling Product</p>
                          <div className='overflow-auto'>
                          {bestSeller.map((e,i)=>(

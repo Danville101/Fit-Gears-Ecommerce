@@ -72,7 +72,7 @@ const Product = ({categories, products}:any) => {
 
 
 
-      <div className="flex items-center h-20 px-10 mb-5 space-x-10 overflow-scroll border-2 rounded-md w-72 md:w-[40rem] snap-x snap-mandatory">
+      <div className="flex items-center h-20 px-10 mb-5 space-x-10 overflow-auto border-2 rounded-md w-72 md:w-[40rem] snap-x snap-mandatory">
 
       {categories.map((e:any,i:any)=>(<div key={i}>
              

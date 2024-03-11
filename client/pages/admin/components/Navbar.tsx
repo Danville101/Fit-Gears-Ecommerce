@@ -50,11 +50,11 @@ const Navbar = () => {
      <div className={`flex ${navbar?"w-40 absolute lg:w-[10vw]":" w-0 lg:w-full "}  duration-500`}>   
           
            <div className={` bg-gradient-to-br from-[#3D9171] to-[#249384] h-screen lg:w-40 text-white pl-4 pt-4 pr-4 ${navbar?"lg:w-[25vw]":""}  lg:block  overflow-hidden `}>
-     <div className='flex items-center justify-between ml-2'> <h1 className='text-3xl'>Fit Gears.</h1> <div className='hidden pr-2 lg:block'><FaStoreAlt className='inline-flex text-3xl'/></div> <div className='rotate-180 lg:hidden' onClick={()=>setNavbar(!navbar)}><UilAngleRightB/></div>
+     <div className='flex items-center justify-between ml-2'> <h1 className='text-3xl'>Fit Gears.</h1> <div className='hidden pr-2 lg:block'><FaStoreAlt className='text-3xl hidden'/></div> <div className='rotate-180 lg:hidden' onClick={()=>setNavbar(!navbar)}><UilAngleRightB/></div>
      </div>
      <div className='flex flex-col space-y-4  mt-8 h-72'>
           <Link href="/admin/dashboard">
-          <div className={`flex py-3 pl-2 items-center rounded-md hover:bg-white/20 ${page==="Dashboard"?"bg-white/20":""} duration-500 hover:cursor-pointer `} onClick={()=>setNavbar(false)} >
+          <div className={`flex py-3 px-4 pl-2 items-center rounded-md hover:bg-white/20 ${page==="Dashboard"?"bg-white/20":""} duration-500 hover:cursor-pointer `} onClick={()=>setNavbar(false)} >
                <div> <UilEstate className='text' /></div>
                
                   <p className="ml-2 text-sm">Dashboard</p>

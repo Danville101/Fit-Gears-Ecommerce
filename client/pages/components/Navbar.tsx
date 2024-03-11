@@ -60,7 +60,7 @@ const Navbar = () => {
 
   return (
      <div className={`flex ${navbar?"w-40 absolute lg:w-[25vw]":" -translate-x-full "}  duration-500 fixed z-50`}>  
-     <div className={`fixed w-[60vw] h-screen bg-white z-50 ${navbar?"block":" hidden "} pt-8 `}>
+     <div className={`fixed w-[57vw] md:w-[59vw] h-screen bg-white z-50 ${navbar?"block":" hidden "} pt-8 `}>
           <button className='flex ml-2 font-light text-neutral-500 hover:text-brand group' onClick={()=>setNavbar(false)}> <div className="mr-1 text-slate-300 group-hover:text-brand"><UilTimes/> </div>  Close</button>
           <div className='flex-col px-4 pb-10 mt-4 space-y-4 border-b'>
                <div>

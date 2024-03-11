@@ -94,17 +94,17 @@ export default function Home({categories, cartData}) {
       </div>
    
     </div>
-
-    <div className='grid grid-cols-1 gap-4 px-4 mt-8 md:grid-cols-2 lg:grid-cols-4 md:px-8 lg:px-12'>
+<div className='flex justify-center items-center w-screen'>
+ <div className='grid grid-cols-1 gap-4 px-4 mt-8 md:grid-cols-2 lg:grid-cols-3 md:px-8 lg:px-40  place-content-center md:w-full 2xl:grid-cols-4'>
       {categories.map((e,i)=>(
         
-        <div className='flex-col items-center justify-center w-full group ' key={i}>
+        <div className='flex-col items-center justify-center w-80 group' key={i}>
           
         <Link href={`/lisitings/?category=${e.category}`}>
           <div></div>
-          <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+e.image} width={200} height={200} alt='' className='w-full duration-500 group-hover:scale-105'/>
-          <div className='flex items-baseline justify-center w-full -translate-y-20'> <div className='w-20 py-2 text-center duration-500 bg-white bg-opacity-50 text-auto text group-hover:bg-brand group-hover:bg-opacity-70 group hover:cursor-pointer'>
-          <p className='duration-700 group-hover:text-white'>{String(e.category).substring(0,9)}...</p>
+          <Image src={`http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+e.image} width={400} height={400} alt='' className='w-80 duration-500 group-hover:scale-105'/>
+          <div className='flex items-baseline justify-center w-full -translate-y-20'> <div className='w-auto px-2 py-2 rounded-md text-center duration-500 bg-white bg-opacity-50 text-auto text group-hover:bg-brand group-hover:bg-opacity-70 group hover:cursor-pointer'>
+          <p className='duration-700 group-hover:text-white'>{String(e.category)}...</p>
           </div></div>
     
 </Link>
@@ -113,6 +113,9 @@ export default function Home({categories, cartData}) {
         
       ))}  
     </div>
+
+</div>
+   
    <div className='px-4'>
     <div className='grid grid-cols-1 gap-6 mt-20 md:grid-cols-2 lg:grid-cols-3'>
    <div className='relative flex w-full bg-black/20 h-96 group'>

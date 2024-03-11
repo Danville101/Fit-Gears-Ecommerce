@@ -19,7 +19,7 @@ function Layout ({children}:any)  {
           <div></div>
      <TopNav/>
 
-     <main className='pb-8 -mt-8 overflow-scroll '>   
+     <main className='pb-8 -mt-8 overflow-auto '>   
 
           {children}
      </main>

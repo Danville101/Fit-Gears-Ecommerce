@@ -104,7 +104,7 @@ const Listing = ({products, page_size, cartData}) => {
      <Layout cartData={cartData} >
           <div className='flex w-screen h-full '>
                <div className='flex w-0 lg:w-[20vw] lg:h-screen'>
-                      <div className={` flex-col justify-center h-screen mb-32  px-10 pb-8 space-x-2  bg-white lg:w-[20vw]  lg:translate-x-0 ${sideMenu?" w-[60vw] overflow-scroll lg:w-[20vw] fixed ":"-translate-x-[60vw] lg:w-[20vw]   "} duration-500    `}>
+                      <div className={` flex-col justify-center h-screen mb-32  px-10 pb-8 space-x-2  bg-white lg:w-[20vw]  lg:translate-x-0 ${sideMenu?" w-[58vw] overflow-auto lg:w-[20vw] fixed ":"-translate-x-[60vw] lg:w-[20vw]   "} duration-500    `}>
 
 
 <div className='fixed flex items-center w-full h-10 py-4 mb-8 bg-white lg:hidden '>
@@ -296,9 +296,9 @@ const Listing = ({products, page_size, cartData}) => {
 
 
                
-               <div  className={`lg:w-[80vw] w-screen  ${sideMenu?"overflow-hidden h-screen ":""} border-l pb-8 `} >
+               <div  className={`lg:w-[80vw] w-screen  ${sideMenu?"overflow-hidden h-screen ":""} border-l pb-8 lg:pr-32 `} >
 
-                    <div className='flex justify-center w-full'>
+                    <div className='flex justify-center w-full lg:w-full items-center px-20'>
 
                               
                                <p className={`mt-20 text-2xl font-bold ${seachTerm?"hidden":""}`}>Listings</p>  
@@ -311,7 +311,7 @@ const Listing = ({products, page_size, cartData}) => {
 
                     
                     <div className='px-4'> 
-                    <div className='flex justify-between w-16 lg:hidden'>
+                    <div className='flex justify-between w-16 lg:hidden hover:cursor-pointer'>
                          
                            <UilFilter />
                            <p className='hover:text-brand' onClick={()=>setSideMenu(true)}>Filter</p>

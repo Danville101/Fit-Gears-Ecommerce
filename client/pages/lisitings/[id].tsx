@@ -3,10 +3,15 @@ import Layout from '../layout/Layout'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+//@ts-ignore
 import { UilAngleRightB, UilAngleLeft , UilMinus,UilPlus,UilShoppingBag, UilShoppingBasket, UilThumbsUp, UilThumbsDown} from '@iconscout/react-unicons'
 
+interface DetailType {
+     product: any,
+     cartData : any
+}
 
-const Detail = ({product, cartData}) => {
+const Detail = ( {product , cartData}:DetailType) => {
      
 
      const [imageState, setImageState]=useState(1)
@@ -14,7 +19,7 @@ const Detail = ({product, cartData}) => {
      const router = useRouter()
      const [amount ,setAmount]=useState()
 
-     const getPic=():String=>{
+     const getPic=():string|any => {
 
           if(imageState==1){
                          return `http://${process.env.NEXT_PUBLIC_IMAGE_URL}:8000/`+product.product.image1
@@ -35,7 +40,7 @@ const Detail = ({product, cartData}) => {
      console.log(cartData.amount)
 
 
-     const addProduct= (price,product_name )=>{
+     const addProduct= (price:string,product_name:string )=>{
           
           fetch(`http://${process.env.NEXT_PUBLIC_HOST}:8000/costumer/cart/`, {
   method: 'POST',
@@ -67,7 +72,7 @@ const Detail = ({product, cartData}) => {
   return (
     <Layout cartData={cartData}>
      <div className='flex-col'>
-          <div className='flex justify-center w-screen px-4 pt-16 md:flex-row '>
+          <div className='flex justify-center w-screen pt-16 lg:px-4 md:flex-row '>
 
 
                <div className='flex-col hidden mr-8 space-y-2 h-80 md:block'>
@@ -97,14 +102,14 @@ const Detail = ({product, cartData}) => {
                     <div className="h-80">
 
                     <div className="flex items-center justify-between w-full mb-10 -ml-10 md:ml-10">
-      <button className='flex items-center justify-center w-8 h-6 translate-x-8 bg-white text-stone-300 hover:bg-black hover:text-white md:hidden' onClick={()=>setImageState(imageState-1)} disabled={imageState==1}> <UilAngleLeft/> </button>
+      <button className='flex items-center justify-center w-6.5 h-6 translate-x-8 bg-white text-stone-300 hover:bg-black hover:text-white md:hidden z-50 opacity-50 hover:cursor rounded-sm' onClick={()=>setImageState(imageState-1)} disabled={imageState==1}> <UilAngleLeft/> </button>
 
 <div className="relative w-60 h-96" >
               <Image src={getPic()} layout='fill' alt='' className='border '/>  
 
 </div>
          
-        <button className='flex items-center justify-center w-8 h-6 -translate-x-8 bg-white text-stone-300 hover:bg-black hover:text-white md:hidden'  onClick={()=>setImageState(imageState+1)} disabled={imageState==4}> <UilAngleRightB/> </button>
+        <button className='flex items-center justify-center w-6.5 h-6 -translate-x-8 bg-white text-stone-300 hover:bg-black hover:text-white md:hidden  hover:cursor opacity-50 rounded-sm'  onClick={()=>setImageState(imageState+1)} disabled={imageState==4}> <UilAngleRightB/> </button>
         
       </div>
                    
@@ -150,7 +155,7 @@ const Detail = ({product, cartData}) => {
 <div className="flex-col">
                <p className="mb-4 text-4xl font-bold text-center">Related Products</p>
 
-               <div className="grid grid-cols-2 gap-4 px-4 py-4 md:grid-cols-3 lg:grid-cols-4 bg-[#F2F2F2]">
+               <div className="grid grid-cols-2 gap-4 px-4 py-4 md:grid-cols-3 lg:grid-cols-4 bg-[#F2F2F2]/20">
 
                     {product.recommendation.map((e,i)=>(<div key={i}>
                          <Link href={`/lisitings/${e.id}`}>

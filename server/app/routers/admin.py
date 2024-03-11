@@ -409,7 +409,7 @@ def daily_seller(db: Session= Depends(get_db)):
                selling[order_item.product_name] = order_item.quantity
      
      sorted_dict = dict(sorted(selling.items(), key=lambda item: item[1], reverse=True))
-     first_five = dict(list(sorted_dict.items())[:3])
+     first_five = dict(list(sorted_dict.items())[:5])
      for key, value in first_five.items():
           product = db.query(Product).filter(Product.name== key).first()
           final.append( {"image":f'http://127.0.0.1:8000/{product.image1}',
