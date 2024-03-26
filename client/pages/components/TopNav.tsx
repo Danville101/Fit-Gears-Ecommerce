@@ -203,7 +203,7 @@ const TopNav = ({cartData}:any) => {
                     
                 </div>
                
-                <div className={`translate-y-[3.6rem]  z-50 lg:translate-y-14 bg-white w-80 fixed right-4 lg:right-8 h-80  lg:h-[40vh] px-4 py-4 rounded-md shadow-xl ${cartDrop?"":"hidden"} overflow-scroll`} onMouseLeave={()=>setCartDrop(false)}>
+                <div className={`translate-y-[3.6rem]  z-50 lg:translate-y-14 bg-white w-80 fixed right-4 lg:right-8 h-80  lg:h-[40vh] px-4 py-4 rounded-md shadow-xl ${cartDrop?"":"hidden"} overflow-auto`} onMouseLeave={()=>setCartDrop(false)}>
                     <p className=''>Shopping Cart</p>
                     {cartData.products? cartData.products.map((e,i)=>(
                          <div key={i} className='flex pb-4 mt-4 border-b group'>
